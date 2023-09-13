@@ -57,6 +57,7 @@ resource "aws_instance" "web3" {
   ami                     = var.amis[var.region]
   instance_type           = var.int_type
   disable_api_termination = var.disable_api_termination
+  user_data               = file("./files/userdata.sh")
 
   tags = {
     Name = var.instance_name[2]
