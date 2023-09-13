@@ -14,7 +14,7 @@ terraform {
 provider "aws" {
   profile             = "default"
   shared_config_files = ["~/.aws/credentials"]
-  region              = "us-east-1"
+  region              = var.region
 }
 
 data "aws_ami" "ubuntu" {
@@ -50,5 +50,15 @@ resource "aws_instance" "web2" {
 
   tags = {
     Name = var.instance_name[1]
+  }
+}
+
+resource "aws_instance" "web3" {
+  ami                     = var.amis[var.region]
+  instance_type           = var.int_type
+  disable_api_termination = var.disable_api_termination
+
+  tags = {
+    Name = var.instance_name[2]
   }
 }
