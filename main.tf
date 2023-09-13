@@ -17,7 +17,7 @@ provider "aws" {
   region              = var.region
 }
 
-resource "aws_instance" "web" {
+/*resource "aws_instance" "web" {
   count                   = 3
   ami                     = var.amis[var.region]
   instance_type           = var.int_type
@@ -26,5 +26,17 @@ resource "aws_instance" "web" {
 
   tags = {
     Name = var.instance_name[count.index]
+  }
+}*/
+
+resource "aws_instance" "web" {
+  for_each                = toset(var.instance_name)
+  ami                     = var.amis[var.region]
+  instance_type           = var.int_type
+  disable_api_termination = var.disable_api_termination
+  user_data               = file("./files/userdata.sh")
+
+  tags = {
+    Name = each.key
   }
 }
