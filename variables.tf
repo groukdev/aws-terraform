@@ -17,7 +17,7 @@ variable "disable_api_termination" {
 variable "instance_name" {
   description = "Lista de nome das instancias"
   type        = list(string)
-  default     = ["HelloWorld", "HelloWorld2", "HelloWorld3"]
+  default     = ["HelloWorld", "HelloWorld2", "HelloWorld3", "HelloWorld4"]
 }
 
 variable "amis" {
