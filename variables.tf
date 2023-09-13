@@ -11,7 +11,7 @@ variable "int_type" {
 variable "disable_api_termination" {
   description = "Proteger a instancia contra delete acidental"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "instance_name" {
