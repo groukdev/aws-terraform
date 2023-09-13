@@ -30,9 +30,13 @@ provider "aws" {
 }*/
 
 resource "aws_instance" "web" {
-  for_each                = toset(var.instance_name)
+  for_each = {
+    HelloWorld  = "t3.nano"
+    HelloWorld2 = "t3.micro"
+    HelloWorld3 = "t3.small"
+  }
   ami                     = var.amis[var.region]
-  instance_type           = var.int_type
+  instance_type           = each.value
   disable_api_termination = var.disable_api_termination
   user_data               = file("./files/userdata.sh")
 
