@@ -39,7 +39,7 @@ resource "aws_instance" "web" {
   disable_api_termination = var.disable_api_termination
 
   tags = {
-    Name = "HelloWorld"
+    Name = var.instance_name[0]
   }
 }
 
@@ -49,6 +49,6 @@ resource "aws_instance" "web2" {
   disable_api_termination = var.disable_api_termination
 
   tags = {
-    Name = "HelloWorld2"
+    Name = var.instance_name[1]
   }
 }
